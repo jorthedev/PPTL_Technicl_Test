@@ -13,7 +13,6 @@ class Database
     {
         $this->host = "localhost";
         $this->username = "root";
-        $this->password = "";
         $this->db = "job_db";
         $this->cs = 'utf8';
         $this->connection();
@@ -104,7 +103,7 @@ class Database
     public function retrieveClientsInfo()
     {
         try {
-            $stmt = $this->conStrg->prepare("CALL `retrieve_sdavejobs`");
+            $stmt = $this->conStrg->prepare("CALL `retrieve_savejobs`");
             $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
