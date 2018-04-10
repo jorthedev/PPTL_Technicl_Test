@@ -100,7 +100,7 @@ class Database
     }
 
     //Retrieve Saved Jobs
-    public function retrieveClientsInfo()
+    public function retrieveSaveJob()
     {
         try {
             $stmt = $this->conStrg->prepare("CALL `retrieve_savejobs`");
