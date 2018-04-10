@@ -73,12 +73,16 @@ function insertSaveJob()
     if (isset($_POST["url"])) {
         $url = $_POST["url"];
     }
-        
+
     if (isset($_POST["date"])) {
         $date = $_POST["date"];
     }
+
+    if (isset($_POST["salary_info"])) {
+        $salary_info = $_POST["salary_info"];
+    }
     
-    $db->insertSaveJobs($job_title, $company, $location, $date, $url);
+    $db->insertSaveJobs($job_title, $company, $location, $date, $url, $salary_info);
 }
 
 ?>

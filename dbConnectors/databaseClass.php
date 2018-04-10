@@ -82,16 +82,17 @@ class Database
     } */
 
     //Inset Saved Jobs
-    public function insertSaveJobs($job_title, $company, $location, $date, $url)
+    public function insertSaveJobs($job_title, $company, $location, $date, $url,$salary_info)
     {
 
         try {
-            $stmt = $this->conStrg->prepare("CALL `insert_tblsavejobs`(?,?,?,?,?)");
+            $stmt = $this->conStrg->prepare("CALL `insert_tblsavejobs`(?,?,?,?,?,?)");
             $stmt->bindParam(1, $job_title, PDO::PARAM_STR, 0);
             $stmt->bindParam(2, $company,PDO::PARAM_STR, 0);
             $stmt->bindParam(3, $location, PDO::PARAM_STR, 0);
             $stmt->bindParam(4, $date, 0);
             $stmt->bindParam(5, $url, PDO::PARAM_STR, 0);
+            $stmt->bindParam(6, $salary_info, PDO::PARAM_STR, 0);
             $stmt->execute();
 
         } catch (PDOException $message) {
