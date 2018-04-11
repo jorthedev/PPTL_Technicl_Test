@@ -70,7 +70,7 @@ function checkLocation(location, locationArray) {
 }
 
 
-//issue with function needs to be fixed
+//issue with function needs to be fixed - work on retriving the information for the saved jobs and sending the saved jobs information to the database
 function interestedState(data) {
     var address = "";
     var locationArray = getLocation(data);
@@ -83,4 +83,8 @@ function interestedState(data) {
         console.log("address: " + address) 
     return address;
         
+}
+
+function savejob(){
+    //put in post request to send over the information to the db
 }
