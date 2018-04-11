@@ -8,9 +8,6 @@ if (isset($_POST["option"])) {
 }
 
 switch ($option) {
-    case "login":
-        login();
-        break;
     case "retrieveUser":
         retrieveUser();
         break;
@@ -22,33 +19,6 @@ switch ($option) {
         break;
 }
 
-function login()
-{
-   /*  global $db;
-    $db = new Database();
-
-    if (isset($_POST["username"])) {
-        $username = $_POST["username"];
-    }
-
-    if (isset($_POST["password"])) {
-        $password = $_POST["password"];
-    }
-
-    //returns 0 if information is not there
-    echo json_encode($db->checkLogin($username, $password)); */
-}
-
-function retrieveUser()
-{
-    /* global $db;
-    $db = new Database();
-
-    if (isset($_POST["username"])) {
-        $username = $_POST["username"];
-    }
-    echo json_encode($db->retrieveUserInfo($username)); */
-}
 
 function retrieveSaveJob()
 {
@@ -75,7 +45,7 @@ function insertSaveJob()
     }
 
     if (isset($_POST["date"])) {
-        $date = $_POST["date"];
+        $date = date("Y-m-d",strtotime($_POST["date"]));
     }
 
     if (isset($_POST["salary_info"])) {
@@ -84,7 +54,7 @@ function insertSaveJob()
     
     if (isset($_POST["starred"])) {
         $starred = $_POST["starred"];
-    }
+    }  
 
     $db->insertSaveJobs($job_title, $company, $location, $date, $url, $salary_info,$starred);
 }

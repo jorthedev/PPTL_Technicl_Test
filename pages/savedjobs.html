@@ -7,32 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Save Jobs</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="../js/app.js" defer></script>
 </head>
-<body>
+
+<body onload="getSavedResults()">
     <div>
         <!-- Navigation Bar -->
         <span> Check out your saved jobs </span>
         <a href="dashboard.html">
             <button> Job Posting</button>
         </a>
-        <button> Log out</button>
     </div>
     <div>
         <span id="noJob">
-            <h2>You have not saved any jobs as yet!</h2>
         </span>
         <div>
-            <div>
-                <span id="rjobTitle">Job Title</span>
-                <span id="rcompany"> Company</span>
-                <span id="raddress">Address</span>
+            <div id="rjobInfo">
             </div>
-            <span id="rdate">Apply by date</span>
-            <div id="starred">
-
-            </div>
-
         </div>
     </div>
 </body>

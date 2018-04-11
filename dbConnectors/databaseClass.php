@@ -3,8 +3,8 @@
 class Database
 {
     private $host;
-    //private $username;
-    //private $password;
+    private $username;
+    private $password;
     private $db;
     private $cs;
     private $conStrg;
@@ -15,6 +15,7 @@ class Database
         $this->username = "root";
         $this->db = "job_db";
         $this->cs = 'utf8';
+        $this->password = '';
         $this->connection();
 
     }
@@ -40,57 +41,16 @@ class Database
         }
     }
 
-    //Login Function
-    /*  public function checkLogin($empUsername, $empPassword)
-    {
-    try {
-
-    $stmt = $this->conStrg->prepare("CALL `authenticate_login`(?,?)");
-
-    $stmt->bindParam(1, $empUsername, PDO::PARAM_STR, 0);
-    $stmt->bindParam(2, $empPassword, PDO::PARAM_STR, 0);
-
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_OBJ);
-    return $result;
-
-    } catch (PDOException $message) {
-    echo "<h2>Login check error: </h2>" . $message->getMessage();
-    }
-
-    } */
-
-    // Retrieve User info
-    /*  public function retrieveUserInfo($empUsername)
-    {
-    try {
-
-    $stmt = $this->conStrg->prepare("CALL `retrieve_user_info`(?)");
-
-    $stmt->bindParam(1, $empUsername, PDO::PARAM_STR, 0);
-
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_OBJ);
-    return $result;
-
-    } catch (PDOException $message) {
-    echo "<h2>Retrieve User info check error: </h2>" . $message->getMessage();
-    }
-
-    } */
-
     //Inset Saved Jobs
     public function insertSaveJobs($job_title, $company, $location, $date, $url,$salary_info,$starred)
     {
-
+        
         try {
             $stmt = $this->conStrg->prepare("CALL `insert_tblsavejobs`(?,?,?,?,?,?,?)");
             $stmt->bindParam(1, $job_title, PDO::PARAM_STR, 0);
             $stmt->bindParam(2, $company,PDO::PARAM_STR, 0);
             $stmt->bindParam(3, $location, PDO::PARAM_STR, 0);
-            $stmt->bindParam(4, $date, 0);
+            $stmt->bindParam(4, $date,PDO::PARAM_STR, 0);
             $stmt->bindParam(5, $url, PDO::PARAM_STR, 0);
             $stmt->bindParam(6, $salary_info, PDO::PARAM_STR, 0);
             $stmt->bindParam(7, $starred, PDO::PARAM_STR, 0);
