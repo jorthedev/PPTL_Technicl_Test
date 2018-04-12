@@ -1,0 +1,52 @@
+.starred{
+    max-height: 40px;
+    max-width: 40px;
+    float: right;
+    float: top;
+}
+
+a:hover{
+    text-decoration: none;
+}
+a{
+    padding-bottom: 5px;
+}
+.textCust{
+    padding-right: 50px;
+}
+
+.date{
+    float: right;
+    padding-right: 30px;
+}
+
+.salary{
+    float: right;
+    padding-right: 40px;
+   
+
+}
+
+.save{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+
+}
+
+.max{
+    width: 1000px;
+}
+
+.btnCus{
+    float: left;
+}
+
+img{
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

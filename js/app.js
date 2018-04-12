@@ -1,10 +1,6 @@
-//TODO: search(info) is not returning the correct results. find a way to fix this.
-
-
 function searchJob() {
     var info = $("#search").val();
     info = addPlus(info);
-    console.log("Search: " + info);
     search(info)
 }
 
@@ -16,11 +12,10 @@ function addPlus(info) {
 
 function search(info) {
     $("#jobInfo").empty();
-    // Enter the search information 
-    var organization_id = "&organization_id=MA";
+
     var url = "https://jobs.search.gov/jobs/search.json?query=";
-    var size = "&size=5";
-    var fullSearchURL = "https://jobs.search.gov/jobs/search.json?query=" + info + organization_id + size;
+    var size = "&size=25";
+    var fullSearchURL = "https://jobs.search.gov/jobs/search.json?query=" + info + size;
 
     $.get(fullSearchURL, function (data, status) {
         displyResults(data)
@@ -29,11 +24,6 @@ function search(info) {
 
 function getSavedResults() {
     $.get("../dbConnectors/databaseScript.php", function (data, status) {
-        console.log(status)
-        console.log(JSON.parse(data))
-        var test = []
-        typeof (data);
-
         if (Object.keys(data).length > 0) {
             displySavedResults(JSON.parse(data))
         }
@@ -58,10 +48,11 @@ function displyResults(data) {
             c = c + 1
         }
         else {
+
             address = "Avaliable in" + address
             var min = money(data[i].minimum, "$");
             var salary = "Starting at " + min;
-            // var sdate = new Date(data[i].start_date) - use jquery ui to achieve the desired look
+
             var kw1 = data[i].position_title
             var kw2 = data[i].position_title
             kw1 = kw1.toLowerCase()
@@ -71,13 +62,14 @@ function displyResults(data) {
 
             if (specialist != undefined) {
                 var starred = "yes";
-                $("#jobInfo").append('<div><a id="url" href= ' + data[i].url + ' target="_blank"><div> <span id="jobTitle" name="job" >' + data[i].position_title + '</span> <br> <span id="company">' + data[i].organization_name + '</span> <br> <span id="address">' + address + '</span> </div> <span id="salary">' + salary + '</span> <span id="date">Apply by ' + data[i].start_date + '</span></a> <button onclick="saveJob(\'' + data[i].position_title + '\',\'' + data[i].organization_name + '\',\'' + address + '\',\'' + salary + '\',\'' + data[i].start_date + '\',\'' + data[i].url + '\',\'' + starred + '\')"> Save</button><div> <img src="../images/star.png" alt="starred"></div></div>')
+
+                $("#jobInfo").append('<div class="card border-primary mb-3"><a class="tooltip-test" title="Click to see details" style="padding-left:20px; padding-top:10px; padding-right:50px" id="url" href= ' + data[i].url + ' target="_blank"> <div><div class="starred"> <img src="images/star.png" alt="starred" height ="40px" width="40px"></div><div class="textCust"><h5 class="card-title textCust">' + data[i].position_title + '</h5></div></div>  <div class="card-text" style="padding-right:80px"> <span id="company">' + data[i].organization_name + '</span><span class="date" id="date">Apply by ' + data[i].end_date + '</span> <span class="salary">' + salary + '</span>   <br> <span id="address">' + address + '</span> </div> </a> <div class="save"> <button class="btn btn-primary btnCus" onclick="saveJob(\'' + data[i].position_title + '\',\'' + data[i].organization_name + '\',\'' + address + '\',\'' + salary + '\',\'' + data[i].end_date + '\',\'' + data[i].url + '\',\'' + starred + '\')"> Save</button></div> </div>')
 
             }
 
             if (prison == undefined && specialist == undefined) {
                 var starred = "no";
-                $("#jobInfo").append('<div><a id="url" href= ' + data[i].url + ' target="_blank"><div> <span id="jobTitle" name="job" >' + data[i].position_title + '</span> <br> <span id="company">' + data[i].organization_name + '</span> <br> <span id="address">' + address + '</span> </div> <span id="salary">' + salary + '</span> <span id="date">Apply by ' + data[i].start_date + '</span></a> <button onclick="saveJob(\'' + data[i].position_title + '\',\'' + data[i].organization_name + '\',\'' + address + '\',\'' + salary + '\',\'' + data[i].start_date + '\',\'' + data[i].url + '\',\'' + starred + '\')"> Save</button></div>')
+                $("#jobInfo").append('<div class="card border-primary mb-3"><a class="tooltip-test" title="Click to see details" style="padding-left:20px; padding-top:10px; padding-right:50px" id="url" href= ' + data[i].url + ' target="_blank"> <div><div class="textCust"><h5 class="card-title textCust">' + data[i].position_title + '</h5></div></div>  <div class="card-text" style="padding-right:80px"> <span id="company">' + data[i].organization_name + '</span><span class="date" id="date">Apply by ' + data[i].end_date + '</span> <span class="salary">' + salary + '</span>   <br> <span id="address">' + address + '</span> </div> </a> <div class="save"><button class="btn btn-primary btnCus" onclick="saveJob(\'' + data[i].position_title + '\',\'' + data[i].organization_name + '\',\'' + address + '\',\'' + salary + '\',\'' + data[i].end_date + '\',\'' + data[i].url + '\',\'' + starred + '\')"> Save</button></div> </div>')
             }
         }
     }
@@ -93,9 +85,9 @@ function displySavedResults(data) {
     for (i = 0; i < Object.keys(data).length; i++) {
         var starred = data[i].starred;
         if (starred == "yes") {
-            $("#rjobInfo").append('<div><a id="url" href= ' + data[i].url_link + ' target="_blank"><div> <span id="jobTitle" name="job" >' + data[i].job_title + '</span> <br> <span id="company">' + data[i].company + '</span> <br> <span id="address">Address</span> </div> <span id="salary">' + data[i].salary_info + '</span> <span id="date">Apply by ' + data[i].date + '</span></a><div> <img src="../images/star.png" alt="starred"></div></div>')
+            $("#rjobInfo").append('<div class="card border-primary mb-3"><a class="tooltip-test" title="Click to see details" style="padding-left:20px; padding-top:10px; padding-right:50px" id="url" href= ' + data[i].url_link + ' target="_blank"> <div><div class="starred"> <img src="../images/star.png" alt="starred" height ="40px" width="40px"></div><div class="textCust"><h5 class="card-title textCust">' + data[i].job_title + '</h5></div></div>  <div class="card-text" style="padding-right:80px"> <span id="company">' + data[i].company + '</span><span class="date" id="date">Apply by ' + data[i].date + '</span> <span class="salary">' + data[i].salary_info + '</span>   <br> <span id="address">' + data[i].location + '</span> </div> </a></div>')
         } else {
-            $("#rjobInfo").append('<div><a id="url" href= ' + data[i].url_link + ' target="_blank"><div> <span>' + data[i].job_title + '</span> <br> <span id="company">' + data[i].company + '</span> <br> <span id="address">Address</span> </div> <span id="salary">' + data[i].salary_info + '</span> <span id="date">Apply by ' + data[i].date + '</span></a></div>')
+            $("#rjobInfo").append('<div class="card border-primary mb-3"><a class="tooltip-test" title="Click to see details" style="padding-left:20px; padding-top:10px; padding-right:50px" id="url" href= ' + data[i].url_link + ' target="_blank"> <div><div class="textCust"><h5 class="card-title textCust">' + data[i].job_title + '</h5></div></div>  <div class="card-text" style="padding-right:80px"> <span id="company">' + data[i].company + '</span><span class="date" id="date">Apply by ' + data[i].date + '</span> <span class="salary">' + data[i].salary_info + '</span>   <br> <span id="address">' + data[i].location + '</span> </div> </a></div>')
         }
     }
 }
@@ -117,7 +109,7 @@ function checkLocation(data) {
     var address = ""
     var FL = '\, FL'
     var TX = '\, TX'
-    var Bos = '\, Boston'
+    var Bos = '\Boston'
     var FL = getLocation(data, FL)
     var TX = getLocation(data, TX)
     var Bos = getLocation(data, Bos)
@@ -133,7 +125,7 @@ function checkLocation(data) {
 
 function saveJob(position, company, address, salary, date, url, starred) {
     var option = "insertSaveJob";
-    $.post("../dbConnectors/databaseScript.php", {
+    $.post("dbConnectors/databaseScript.php", {
         option: option,
         job_title: position,
         company: company,
@@ -143,10 +135,6 @@ function saveJob(position, company, address, salary, date, url, starred) {
         salary_info: salary,
         starred: starred
     }, function (data, status) {
-
-        alert("Job has been saved!");
-        //alert the user that the job has been saved
-
-        // do the same thing you did with the job posting generate the information - that is for retrieving the info for the saved jobs
+        $('#myModal').modal('show')
     })
 }

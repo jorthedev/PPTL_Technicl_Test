@@ -5,27 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Save Jobs</title>
+    <title>Save Jobs</title>           
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="../css/custom.css">
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../js/popper.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/app.js" defer></script>
 </head>
 
 <body onload="getSavedResults()">
-    <div>
-        <!-- Navigation Bar -->
-        <span> Check out your saved jobs </span>
-        <a href="dashboard.html">
-            <button> Job Posting</button>
-        </a>
-    </div>
-    <div>
+    <nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd;">
+        <span class="navbar-brand" style="padding-left:40px"> Check out your saved jobs </span>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" style="float:right; margin-left:10%">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Job Posting</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="padding-top:10px; padding-left:20px">
         <span id="noJob">
         </span>
-        <div>
-            <div id="rjobInfo">
+        <div style="padding:20px; ">
+            <div  id="rjobInfo">
             </div>
         </div>
     </div>
