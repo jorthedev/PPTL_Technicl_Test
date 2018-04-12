@@ -25,7 +25,6 @@ function search(info) {
     $.get(fullSearchURL, function (data, status) {
         displyResults(data)
     });
-
 }
 
 function getSavedResults() {
@@ -144,7 +143,7 @@ function saveJob(position, company, address, salary, date, url, starred) {
         salary_info: salary,
         starred: starred
     }, function (data, status) {
-        
+
         alert("Job has been saved!");
         //alert the user that the job has been saved
 
