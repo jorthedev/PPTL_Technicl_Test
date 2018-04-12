@@ -16,9 +16,13 @@ Users will be able to save a search result and view it on the 'Saved Jobs' Page
 ## Installing
 Once you've cloned the repository, install the database script. (The database script can be found in the database folder)
 
-Set up the folder on your localhost (or other server)
+Set up the folder on your localhost (or other server). 
 
 Go to the index.html and search for the various jobs
+
+## Impotanat Note
+
+If you are not using localhost, please change the connection settings in the databaseClass.php file to match up to your server connection.
 
 ## Built with
 jquery
