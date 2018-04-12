@@ -20,7 +20,7 @@ Set up the folder on your localhost (or other server).
 
 Go to the index.html and search for the various jobs
 
-## Impotanat Note
+## Important Note
 
 If you are not using localhost, please change the connection settings in the databaseClass.php file to match up to your server connection.
 
